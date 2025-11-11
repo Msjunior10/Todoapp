@@ -21,7 +21,7 @@ export default function reducer(currentTodos, action) {
 
 		case "deleted": {
 			const updatedTodos = currentTodos.filter((t) => {
-				return t.id != action.payload.id;
+				return t.id !== action.payload.id;
 			});
 
 			localStorage.setItem("todos", JSON.stringify(updatedTodos));
@@ -30,7 +30,7 @@ export default function reducer(currentTodos, action) {
 
 		case "updated": {
 			const updatedTodos = currentTodos.map((t) => {
-				if (t.id == action.payload.id) {
+				if (t.id === action.payload.id) {
 					return {
 						...t,
 						title: action.payload.title,
@@ -54,7 +54,7 @@ export default function reducer(currentTodos, action) {
 
 		case "toggledCompleted": {
 			const updatedTodos = currentTodos.map((t) => {
-				if (t.id == action.payload.id) {
+				if (t.id === action.payload.id) {
 					const updatedTodo = {
 						...t,
 						isCompleted: !t.isCompleted,
@@ -71,5 +71,4 @@ export default function reducer(currentTodos, action) {
 			throw Error("Unknown Action " + action.type);
 		}
 	}
-	return [];
 }

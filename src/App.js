@@ -1,11 +1,6 @@
 import "./App.css";
 import TodoList from "./components/TodoList";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { TodosContext } from "./contexts/todosContext";
-import { useState } from "react";
-
-import { v4 as uuidv4 } from "uuid";
-import MySnackBar from "./components/MySnackBar";
 import TodosProvider from "./contexts/todosContext";
 import { ToastProvider } from "./contexts/ToastContext";
 const theme = createTheme({
@@ -20,30 +15,7 @@ const theme = createTheme({
 	},
 });
 
-const initialTodos = [
-	{
-		id: uuidv4(),
-		title: "Read a book",
-		details: "Some details about the book to be read",
-		isCompleted: false,
-	},
-	{
-		id: uuidv4(),
-		title: "Read a book",
-		details: "Some details about the book to be read",
-		isCompleted: false,
-	},
-	{
-		id: uuidv4(),
-		title: "Read a book",
-		details: "Some details about the book to be read",
-		isCompleted: false,
-	},
-];
-
 function App() {
-	const [todos, setTodos] = useState(initialTodos);
-
 	return (
 		<ThemeProvider theme={theme}>
 			<TodosProvider>

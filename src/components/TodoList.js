@@ -1,7 +1,6 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -10,20 +9,12 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Grid from "@mui/material/Unstable_Grid2";
 import TextField from "@mui/material/TextField";
-import dayjs from 'dayjs';
 
 // DATE PICKER IMPORTS
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { v4 as uuidv4 } from "uuid";
-
-// ICONS
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
-import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
 
 // Components
 import Todo from "./Todo";
@@ -38,8 +29,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 // OTHERS
 import { useTodos, useTodosDispatch } from "../contexts/todosContext";
 import { useToast } from "../contexts/ToastContext";
-import { useState, useEffect, useMemo, useReducer } from "react";
-import todosReducer from "../reducers/todosReducer";
+import { useState, useEffect, useMemo } from "react";
 
 // import { TodosContext } from "../contexts/todosContext";
 export default function TodoList() {
@@ -74,9 +64,9 @@ export default function TodoList() {
 
 	let todosToBeRendered = todos;
 
-	if (displayedTodosType == "completed") {
+	if (displayedTodosType === "completed") {
 		todosToBeRendered = completedTodos;
-	} else if (displayedTodosType == "non-completed") {
+	} else if (displayedTodosType === "non-completed") {
 		todosToBeRendered = notCompletedTodos;
 	} else {
 		todosToBeRendered = todos;
@@ -84,7 +74,7 @@ export default function TodoList() {
 
 	useEffect(() => {
 		dispatch({ type: "get" });
-	}, []);
+	}, [dispatch]);
 
 	// ===== HANDLERS
 	function changeDisplayedType(e) {
