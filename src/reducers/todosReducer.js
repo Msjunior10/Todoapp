@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import dayjs from 'dayjs';
 
 export default function reducer(currentTodos, action) {
 	switch (action.type) {
@@ -49,7 +50,15 @@ export default function reducer(currentTodos, action) {
 		case "get": {
 			const storageTodos =
 				JSON.parse(localStorage.getItem("todos")) ?? [];
-			return storageTodos;
+			
+			// Convert time strings back to dayjs objects
+			const todosWithDayjs = storageTodos.map(todo => ({
+				...todo,
+				startTime: todo.startTime ? dayjs(todo.startTime) : null,
+				endTime: todo.endTime ? dayjs(todo.endTime) : null,
+			}));
+			
+			return todosWithDayjs;
 		}
 
 		case "toggledCompleted": {

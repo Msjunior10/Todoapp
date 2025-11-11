@@ -2,7 +2,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-import dayjs from 'dayjs';
 
 // ICONS
 import CheckIcon from "@mui/icons-material/Check";
@@ -100,9 +99,9 @@ export default function Todo({ todo, showDelete, showUpdate }) {
 										width: "100%"
 									}}
 								>
-									{todo.startTime && `Start: ${typeof todo.startTime === 'string' ? todo.startTime : dayjs(todo.startTime).format('HH:mm')}`}
+									{todo.startTime && `Start: ${todo.startTime.format('HH:mm')}`}
 									{todo.startTime && todo.endTime && " | "}
-									{todo.endTime && `End: ${typeof todo.endTime === 'string' ? todo.endTime : dayjs(todo.endTime).format('HH:mm')}`}
+									{todo.endTime && `End: ${todo.endTime.format('HH:mm')}`}
 								</Typography>
 							)}
 						</Grid>
